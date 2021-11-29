@@ -2,8 +2,8 @@ name: "godot-ci export"
 on: push
 
 env:
-  GODOT_VERSION: 3.3.4
-  EXPORT_NAME: test-project
+  GODOT_VERSION: 3.4
+  EXPORT_NAME: game
 
 jobs:
   export-windows:
@@ -48,8 +48,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          cd $EXPORT_NAME
-          godot -v --export "HTML5" ../build/web/index.html
+          godot -v --export "HTML5" build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -83,8 +82,7 @@ jobs:
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
-          cd $EXPORT_NAME
-          godot -v --export "Mac OSX" ../build/mac/$EXPORT_NAME.zip
+          godot -v --export "Mac OSX" build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
